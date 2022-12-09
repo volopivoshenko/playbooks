@@ -5,10 +5,27 @@
     ansible_python_interpreter: "{{ ansible_playbook_python }}"
 
   tasks:
-    - name: Install GUI tools
+    - name: Install taps via homebrew
+      community.general.homebrew_tap:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - hashicorp/tap
+        - homebrew/cask-fonts
+
+    - name: Install fonts via homebrew
       community.general.homebrew_cask:
         name: "{{ item }}"
-        state: installed
+        state: present
+      with_items:
+        - font-jetbrains-mono-nerd-font
+        - font-meslo-lg-nerd-font
+      ignore_errors: true
+
+    - name: Install GUI tools via homebrew
+      community.general.homebrew_cask:
+        name: "{{ item }}"
+        state: present
       with_items:
         - cyberduck
         - dbeaver-community
@@ -32,7 +49,7 @@
         - warp
       ignore_errors: true
 
-    - name: Install CLI tools
+    - name: Install CLI tools via homebrew
       community.general.homebrew:
         name: "{{ item }}"
         state: present
@@ -78,8 +95,8 @@
       ansible.builtin.shell:
         cmd: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
-    # - name: Install Java
-    #   ansible.builtin.command: sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+    - name: Install Java
+      ansible.builtin.command: sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
 
     - name: Install oh-my-zsh
       ansible.builtin.shell:
