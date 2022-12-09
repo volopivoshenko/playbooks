@@ -61,9 +61,11 @@
         - btop
         - commitizen
         - curl
+        - charmbracelet/tap/vhs
         - docker
         - dotdrop
         - erlang
+        - ffmpeg
         - gcc
         - gh
         - go
@@ -78,6 +80,7 @@
         - lazydocker
         - minikube
         - openjdk@11
+        - pueue
         - pyenv
         - pyenv-virtualenv
         - rbenv
@@ -86,6 +89,7 @@
         - starship
         - terraform
         - thefuck
+        - ttyd
         - tmux
         - vim
         - wget
@@ -102,3 +106,12 @@
       ansible.builtin.shell:
         cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
       ignore_errors: true
+
+    - name: Install powerlevel10k
+      ansible.builtin.shell:
+        cmd: git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+      ignore_errors: true
+
+    - name: Install hishtory
+      ansible.builtin.shell:
+        cmd: curl https://hishtory.dev/install.py | python3 -
