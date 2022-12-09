@@ -1,0 +1,4 @@
+skip_list:
+  - ignore-errors
+  - no-changed-when
+  - command-instead-of-module

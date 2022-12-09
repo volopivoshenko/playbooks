@@ -1,0 +1,87 @@
+- name: MacOS Setup
+  hosts: localhost
+  vars:
+    ansible_connection: local
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
+
+  tasks:
+    - name: Install GUI tools
+      community.general.homebrew_cask:
+        name: "{{ item }}"
+        state: installed
+      with_items:
+        - cyberduck
+        - dbeaver-community
+        - discord
+        - docker
+        - drawio
+        - hyper
+        - iterm2
+        - jetbrains-toolbox
+        - nordpass
+        - nordvpn
+        - obsidian
+        - postman
+        - pycharm
+        - qbittorrent
+        - skype
+        - slack
+        - spotify
+        - telegram
+        - visual-studio-code
+        - warp
+      ignore_errors: true
+
+    - name: Install CLI tools
+      community.general.homebrew:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - act
+        - autojump
+        - bat
+        - bazel
+        - btop
+        - commitizen
+        - curl
+        - docker
+        - dotdrop
+        - erlang
+        - gcc
+        - gh
+        - go
+        - graphviz
+        - helix
+        - helm
+        - java
+        - jq
+        - julia
+        - k9s
+        - kubernetes-cli
+        - lazydocker
+        - minikube
+        - openjdk@11
+        - pyenv
+        - pyenv-virtualenv
+        - rbenv
+        - ruby-build
+        - spaceship
+        - starship
+        - terraform
+        - thefuck
+        - tmux
+        - vim
+        - wget
+        - xplr
+
+    - name: Install Rust
+      ansible.builtin.shell:
+        cmd: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+    # - name: Install Java
+    #   ansible.builtin.command: sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+
+    - name: Install oh-my-zsh
+      ansible.builtin.shell:
+        cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      ignore_errors: true
