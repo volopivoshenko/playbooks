@@ -1,9 +1,18 @@
-# playbooks
+# Ansible Playbooks
 
-🏡 Ansible playbooks
+🏡 Ansible playbooks.
 
-**Install a playbook**
+
+## 🧙🏻 Installation
+
+1. Install [`ansible`][ansible].
+
+2. Run the following command to install the necessary setup:
 
 ```shell
+cd macos  # or other OS
+
 ansible-playbook playbook.yaml
 ```
+
+[ansible]: https://pypi.org/project/ansible
