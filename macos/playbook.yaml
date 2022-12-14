@@ -65,6 +65,7 @@
         - charmbracelet/tap/vhs
         - docker
         - dotdrop
+        - dsq
         - erlang
         - ffmpeg
         - gcc
