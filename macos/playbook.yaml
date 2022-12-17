@@ -82,6 +82,7 @@
         - kubernetes-cli
         - lazydocker
         - minikube
+        - node
         - openjdk@11
         - pueue
         - pyenv
