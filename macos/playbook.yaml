@@ -63,7 +63,6 @@
         - btop
         - commitizen
         - curl
-        - charmbracelet/tap/vhs
         - docker
         - dotdrop
         - dsq
@@ -94,8 +93,10 @@
         - starship
         - terraform
         - thefuck
-        - ttyd
         - tmux
+        - tree
+        - ttyd
+        - vhs
         - vim
         - wget
         - xplr
